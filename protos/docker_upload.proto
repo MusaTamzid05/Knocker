@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package docker_uploadpb;
+option go_package = "docker_uploadpb";
+
+message DockerUpload {
+    string image_name = 1;
+    bytes file = 2;
+}
+
+message DockerUploadRequest {
+    DockerUpload docker_upload = 1;
+}
+
+message DockerUploadResponse {
+    bool success = 1;
+}
+
+
+
+service DockerUploadService {
+    rpc Upload(DockerUploadRequest) returns (DockerUploadResponse) {};
+}
