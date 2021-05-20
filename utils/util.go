@@ -1,6 +1,9 @@
 package utils
 
-import "os"
+import (
+	"io/ioutil"
+	"os"
+)
 
 func DoesDirExists(path string) bool {
 
@@ -10,4 +13,8 @@ func DoesDirExists(path string) bool {
 
 	return true
 
+}
+
+func WriteFile(buffer []byte, path string) error {
+	return ioutil.WriteFile(path, buffer, 0644)
 }

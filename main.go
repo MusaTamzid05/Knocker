@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"knocker/image"
 	"log"
 )
 
@@ -14,12 +15,15 @@ func main() {
 
 	if *imageServerPtr {
 		log.Println("Running Image Server")
+		tcpServer := image.NewTCPServer("0.0.0.0", 5000)
+		tcpServer.Start()
 		return
 
 	}
 
 	if *imageDownloadClient {
-		log.Println("Running Image Client")
+		imageClient := image.NewClient()
+		imageClient.Run("0.0.0.0:5000", "main.go")
 		return
 
 	}

@@ -2,6 +2,7 @@ package image
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"knocker/docker_downloadpb"
@@ -14,6 +15,10 @@ import (
 type TCPServer struct {
 	Address string
 	Port    int
+}
+
+func NewTCPServer(address string, port int) *TCPServer {
+	return &TCPServer{Address: address, Port: port}
 }
 
 type helperServer struct {
@@ -30,6 +35,8 @@ func (e *helperServer) Download(ctx context.Context, req *docker_downloadpb.Dock
 
 	if err == nil {
 		imageFound = true
+	} else {
+		err = errors.New("Image not found.")
 	}
 
 	res := &docker_downloadpb.DockerDownloadResponse{
