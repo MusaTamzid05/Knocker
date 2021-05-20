@@ -1,15 +1,29 @@
 package main
 
 import (
-	"knocker/image"
+	"flag"
 	"log"
 )
 
 func main() {
-	image, err := image.NewImage("./images")
 
-	if err != nil {
-		log.Fatalln(err)
+	imageServerPtr := flag.Bool("image_server", false, "The image server")
+	imageDownloadClient := flag.Bool("image_client", false, "The image client")
+
+	flag.Parse()
+
+	if *imageServerPtr {
+		log.Println("Running Image Server")
+		return
+
 	}
-	image.List()
+
+	if *imageDownloadClient {
+		log.Println("Running Image Client")
+		return
+
+	}
+
+	flag.PrintDefaults()
+
 }
