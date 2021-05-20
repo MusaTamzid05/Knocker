@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package docker_download;
+option go_package = "docker_downloadpb";
+
+message DockerDownload {
+    string image_name = 1;
+}
+
+message DockerDownloadRequest {
+    DockerDownload docker_download = 1;
+}
+
+message DockerDownloadResponse {
+    bool image_found = 2;
+    string image_name = 3;
+    bytes file = 1;
+}
+
+
+
+service DockerDownloadService {
+    rpc Download(DockerDownloadRequest) returns (DockerDownloadResponse) {};
+}
