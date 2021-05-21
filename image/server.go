@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"io/ioutil"
 	"knocker/docker_downloadpb"
+	"knocker/utils"
 	"log"
 	"net"
 
@@ -54,7 +54,7 @@ func (e *helperServer) LoadImage(imageName string) {
 }
 
 func (e *helperServer) readFile(filepath string) ([]byte, error) {
-	return ioutil.ReadFile(filepath)
+	return utils.ReadFile(filepath)
 }
 
 func (s *TCPServer) Start() {

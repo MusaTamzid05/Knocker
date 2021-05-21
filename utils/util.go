@@ -18,3 +18,7 @@ func DoesDirExists(path string) bool {
 func WriteFile(buffer []byte, path string) error {
 	return ioutil.WriteFile(path, buffer, 0644)
 }
+
+func ReadFile(path string) ([]byte, error) {
+	return ioutil.ReadFile(path)
+}
